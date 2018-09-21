@@ -1,9 +1,10 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 
-int main(int argv, char** args) {
+#include "engine/os/acryl2d.h"
 
-    std::cout << "Hello World" << std::endl;
+int main(int argv, char** args) {
+    Acryl2D::initialize(800, 400, "Acryl");
 
     return 0;
 }
