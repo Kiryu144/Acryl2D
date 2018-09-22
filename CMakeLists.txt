@@ -11,7 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/external/include/)
 
 link_directories(${PROJECT_SOURCE_DIR}/external/lib/SDL2/)
 
-set(SOURCE_FILES source/test/main.cpp source/engine/acryl2d.cpp source/engine/acryl2d.h)
+set(SOURCE_FILES source/test/main.cpp source/engine/acryl2d.cpp source/engine/acryl2d.h source/test/game.cpp source/test/game.h source/engine/acrylgame.h)
 add_executable(Acryl2D ${SOURCE_FILES})
 
 target_link_libraries(Acryl2D mingw32 SDL2main SDL2)

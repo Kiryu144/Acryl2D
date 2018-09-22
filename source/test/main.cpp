@@ -2,14 +2,13 @@
 #include <SDL2/SDL.h>
 
 #include "engine/acryl2d.h"
-
-void loop(double delta){
-
-}
+#include "game.h"
 
 int main(int argv, char** args) {
     Acryl2D::initialize(800, 400, "Acryl");
-    Acryl2D::mainloop(loop);
+
+    Game game;
+    Acryl2D::mainloop(game);
 
     return 0;
 }

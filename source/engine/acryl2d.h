@@ -2,6 +2,7 @@
 #define ACRYL2D_ACRYL2D_H
 
 #include <SDL2/SDL.h>
+#include "acrylgame.h"
 
 class Acryl2D {
 private:
@@ -13,7 +14,7 @@ public:
     static void initialize(const char* title);
     static void initialize();
 
-    static void mainloop(void (*func)(double));
+    static void mainloop(AcrylGame& game);
 
     static void quit();
 };

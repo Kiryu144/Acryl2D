@@ -27,11 +27,11 @@ void Acryl2D::initialize() {
     initialize(400, 400, "Acryl2D");
 }
 
-void Acryl2D::mainloop(void (*func)(double)) {
+void Acryl2D::mainloop(AcrylGame& game) {
     double lastTime = SDL_GetTicks();
     while(!SDL_QuitRequested()){
         double deltaTime = SDL_GetTicks() - lastTime;
-        func(deltaTime);
+        game.update(deltaTime);
     }
 }
 
