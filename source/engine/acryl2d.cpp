@@ -10,9 +10,18 @@ void initialize();
 
 void Acryl2D::initialize(unsigned int width, unsigned int height, const char *title) {
     SDL_Init(SDL_INIT_VIDEO);
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
 
     Uint32 windowFlags = SDL_WINDOW_OPENGL;
     sdlWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, windowFlags);
+
+    SDL_GL_CreateContext(sdlWindow);
+
+    glewExperimental = GL_TRUE;
+    glewInit();
+
 }
 
 void Acryl2D::initialize(unsigned int width, unsigned int height) {
@@ -28,6 +37,7 @@ void Acryl2D::initialize() {
 }
 
 void Acryl2D::mainloop(AcrylGame& game) {
+    game.start();
     double lastTime = SDL_GetTicks();
     while(!SDL_QuitRequested()){
         double deltaTime = SDL_GetTicks() - lastTime;

@@ -5,10 +5,14 @@
 #include "game.h"
 
 int main(int argv, char** args) {
-    Acryl2D::initialize(800, 400, "Acryl");
+    try{
+        Acryl2D::initialize(800, 400, "Acryl");
 
-    Game game;
-    Acryl2D::mainloop(game);
+        Game game;
+        Acryl2D::mainloop(game);
+    }catch(std::exception exception){
+        std::cerr << exception.what() << std::endl;
+    }
 
     return 0;
 }

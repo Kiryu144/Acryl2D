@@ -2,6 +2,7 @@
 #define ACRYL2D_ACRYL2D_H
 
 #include <SDL2/SDL.h>
+#include <GLEW/glew.h>
 #include "acrylgame.h"
 
 class Acryl2D {

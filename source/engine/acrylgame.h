@@ -6,6 +6,7 @@ class Acryl2D;
 
 class AcrylGame {
 public:
+    virtual void start() {};
     virtual void update(double delta) {};
 };
 
