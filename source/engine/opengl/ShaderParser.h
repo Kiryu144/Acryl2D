@@ -5,6 +5,7 @@
 #include <GLEW/glew.h>
 #include <GLM/common.hpp>
 #include <GLM/matrix.hpp>
+#include <string>
 
 class ShaderParser {
 private:
