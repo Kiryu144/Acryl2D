@@ -28,7 +28,13 @@ GLuint ShaderParser::compile(const char *shader, GLuint type) {
     int success = GL_FALSE;
     glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
     if(success == GL_FALSE){
-        throw std::logic_error("Cannot compile shader!");
+        GLint logLenght;
+        char* log;
+
+        glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &logLenght);
+        glGetShaderInfoLog(shaderID, logLenght, &logLenght, log);
+
+        throw std::logic_error("Cannot compile shader! Error: " + std::string(log));
     }
 
     return shaderID;
