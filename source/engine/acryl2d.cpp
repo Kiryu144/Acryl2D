@@ -1,4 +1,5 @@
 /* Created by David Klostermann on 21.09.2018. */
+#include <cstdio>
 #include "acryl2d.h"
 
 SDL_Window* Acryl2D::sdlWindow = nullptr;
@@ -42,6 +43,24 @@ void Acryl2D::mainloop(AcrylGame& game) {
     while(!SDL_QuitRequested()){
         double deltaTime = SDL_GetTicks() - lastTime;
         game.update(deltaTime);
+
+        GLenum error = glGetError();
+        while(error != GL_NO_ERROR){
+            const char* strError;
+            switch(error){
+                case GL_INVALID_ENUM: strError = "GL_INVALID_ENUM"; break;
+                case GL_INVALID_VALUE: strError = "GL_INVALID_VALUE"; break;
+                case GL_INVALID_OPERATION: strError = "GL_INVALID_OPERATION"; break;
+                case GL_INVALID_FRAMEBUFFER_OPERATION: strError = "GL_INVALID_FRAMEBUFFER_OPERATION"; break;
+                case GL_OUT_OF_MEMORY: strError = "GL_OUT_OF_MEMORY"; break;
+                case GL_STACK_UNDERFLOW: strError = "GL_STACK_UNDERFLOW"; break;
+                case GL_STACK_OVERFLOW: strError = "GL_STACK_OVERFLOW"; break;
+                default: strError = "UNKNOWN ERROR!"; break;
+            }
+
+            printf("Opengl error '%s' found!", strError);
+            error = glGetError();
+        }
     }
 }
 

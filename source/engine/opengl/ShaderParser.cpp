@@ -10,11 +10,11 @@ ShaderParser::ShaderParser(const char *vertex, const char *fragment, const char 
     }
 
     if(fragment != nullptr){
-        fragmentID = compile(vertex, GL_VERTEX_SHADER);
+        fragmentID = compile(fragment, GL_FRAGMENT_SHADER);
     }
 
     if(geometry != nullptr){
-        geometryID = compile(vertex, GL_VERTEX_SHADER);
+        geometryID = compile(geometry, GL_GEOMETRY_SHADER);
     }
 
     programID = link(vertexID, fragmentID, geometryID);
@@ -22,13 +22,13 @@ ShaderParser::ShaderParser(const char *vertex, const char *fragment, const char 
 
 GLuint ShaderParser::compile(const char *shader, GLuint type) {
     GLuint shaderID = glCreateShader(type);
-    glShaderSource(type, 1, &shader, nullptr);
+    glShaderSource(shaderID, 1, &shader, nullptr);
     glCompileShader(shaderID);
 
     int success = GL_FALSE;
     glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
     if(success == GL_FALSE){
-        throw std::logic_error("Invalid Syntax!");
+        throw std::logic_error("Cannot compile shader!");
     }
 
     return shaderID;
