@@ -1,6 +1,6 @@
 /* Created by David Klostermann on 22.09.2018. */
 #include <stdexcept>
-#include "ShaderParser.h"
+#include "shaderparser.h"
 
 ShaderParser::ShaderParser(const char *vertex, const char *fragment, const char *geometry) {
     GLuint vertexID, fragmentID, geometryID;
