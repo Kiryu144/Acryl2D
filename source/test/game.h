@@ -4,7 +4,10 @@
 
 #include <engine/acryl2d.h>
 #include <engine/opengl/shader.h>
+#include <engine/opengl/mesh.h>
+#include <engine/opengl/texture.h>
 #include <fstream>
+#include <vector>
 #include <sstream>
 
 
