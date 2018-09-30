@@ -7,14 +7,14 @@
 #include <GLM/matrix.hpp>
 #include <string>
 
-class ShaderParser {
+class Shader {
 private:
     GLuint compile(const char* shader, GLuint type);
     GLuint link(GLuint vertex, GLuint fragment, GLuint geometry);
 
     GLuint programID;
 public:
-    ShaderParser(const char* vertex, const char* fragment, const char* geometry);
+    Shader(const char* vertex, const char* fragment, const char* geometry);
 
     void bind();
 

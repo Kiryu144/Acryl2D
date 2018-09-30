@@ -1,8 +1,8 @@
 /* Created by David Klostermann on 22.09.2018. */
 #include <stdexcept>
-#include "shaderparser.h"
+#include "shader.h"
 
-ShaderParser::ShaderParser(const char *vertex, const char *fragment, const char *geometry) {
+Shader::Shader(const char *vertex, const char *fragment, const char *geometry) {
     GLuint vertexID, fragmentID, geometryID;
 
     if(vertex != nullptr){
@@ -20,7 +20,7 @@ ShaderParser::ShaderParser(const char *vertex, const char *fragment, const char 
     programID = link(vertexID, fragmentID, geometryID);
 }
 
-GLuint ShaderParser::compile(const char *shader, GLuint type) {
+GLuint Shader::compile(const char *shader, GLuint type) {
     GLuint shaderID = glCreateShader(type);
     glShaderSource(shaderID, 1, &shader, nullptr);
     glCompileShader(shaderID);
@@ -40,7 +40,7 @@ GLuint ShaderParser::compile(const char *shader, GLuint type) {
     return shaderID;
 }
 
-GLuint ShaderParser::link(GLuint vertex, GLuint fragment, GLuint geometry) {
+GLuint Shader::link(GLuint vertex, GLuint fragment, GLuint geometry) {
     GLuint programID = glCreateProgram();
 
     if(vertex != 0){
@@ -64,39 +64,39 @@ GLuint ShaderParser::link(GLuint vertex, GLuint fragment, GLuint geometry) {
     return programID;
 }
 
-void ShaderParser::bind() {
+void Shader::bind() {
     glUseProgram(programID);
 }
 
-int ShaderParser::getUniformLocation(std::string uniformName) {
+int Shader::getUniformLocation(std::string uniformName) {
     return glGetUniformLocation(this->programID, uniformName.c_str());
 }
 
-void ShaderParser::setUniform(std::string uniform, float value) {
+void Shader::setUniform(std::string uniform, float value) {
     glUniform1f(getUniformLocation(uniform), value);
 }
 
-void ShaderParser::setUniform(std::string uniform, glm::vec2 vec) {
+void Shader::setUniform(std::string uniform, glm::vec2 vec) {
     glUniform2f(getUniformLocation(uniform), vec.x, vec.y);
 }
 
-void ShaderParser::setUniform(std::string uniform, glm::vec3 vec) {
+void Shader::setUniform(std::string uniform, glm::vec3 vec) {
     glUniform3f(getUniformLocation(uniform), vec.x, vec.y, vec.z);
 }
 
-void ShaderParser::setUniform(std::string uniform, glm::vec4 vec) {
+void Shader::setUniform(std::string uniform, glm::vec4 vec) {
     glUniform4f(getUniformLocation(uniform), vec.r, vec.g, vec.b, vec.a);
 }
 
-void ShaderParser::setUniform(std::string uniform, glm::mat4 mat) {
+void Shader::setUniform(std::string uniform, glm::mat4 mat) {
     glUniformMatrix4fv(getUniformLocation(uniform), 1, GL_FALSE, &mat[0][0]);
 }
 
-void ShaderParser::setUniform(std::string uniform, int value) {
+void Shader::setUniform(std::string uniform, int value) {
     glUniform1i(getUniformLocation(uniform), 0);
 }
 
-GLuint ShaderParser::getProgramId() {
+GLuint Shader::getProgramId() {
     return programID;
 }
 
